@@ -1,0 +1,22 @@
+{
+  "strategy 1": {
+    "practice S01" : {
+      "capability-per-innovation-level": [3,3,2,2,1],
+      "surveyed-innovation" : 1
+    },
+    "practice S02" : {
+      "capability-per-innovation-level": [3,3,2,2,1],
+      "surveyed-innovation" : 1
+    }
+  },
+  "strategy 2": {
+    "practice SD01" : {
+      "capability-per-innovation-level": [3,3,2,2,1],
+      "surveyed-innovation" : 1
+    },
+    "practice SD02" : {
+      "capability-per-innovation-level": [3,3,2,2,1],
+      "surveyed-innovation" : 1
+    }
+  }
+}
