@@ -19,6 +19,18 @@
       ]
     },
     {
+      "label": "Strategy 1V",
+      "children": [
+        {"label": "S01", "data": [1,1,1,2,3]},
+        {"label": "S02", "data": [1,1,1,2,3]},
+        {"label": "S03", "data": [2,2,2,2,3]},
+        {"label": "S04", "data": [2,2,2,2,3]},
+        {"label": "S05", "data": [2,2,2,2,3]},
+        {"label": "S12", "data": [3,3,3,3,3]},
+        {"label": "S13", "data": [3,3,3,3,3]}
+      ]
+    },
+    {
       "label": "Strategy 2",
       "children": [
         {"label": "C01", "data": [1,1,1,2,3]},

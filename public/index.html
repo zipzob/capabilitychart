@@ -27,6 +27,7 @@
         // var treeroot = d3.hierarchy(json, function(e) { return Number.isFinite(e.data[0]) ? [] : e.data; });
         var treeroot = d3.hierarchy(json);
 
+        // TODO: move into some chart helper or import function.
         // enrich with meta data information
         var total = treeroot.leaves().length;
         // treeroot.children.map(function(d) { return d.children.length;})

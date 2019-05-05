@@ -15,7 +15,8 @@ function radialBarChart() {
     var schemeDataColour = ["#daebd8", "#c1cbc2", "#b8d6ce", "#9cbfa1"],
         schemeGroupColour = ["#b5ccd2","#b082b3","#b675a2","#7a8aa4"],
         dataColours = d3.scaleLinear([1,3], schemeDataColour),
-        groupColours = d3.scaleOrdinal([0,3], schemeGroupColour),
+        // groupColours = d3.scaleOrdinal([0,3], schemeGroupColour),
+        groupColours = d3.scaleOrdinal(d3.schemeCategory10),
         testColours = d3.scaleLinear().domain(d3.extent([0,3], function(d) { return d; })).range(["white", "red"]);
 
     var svg = d3.select("#capabilitychart")
@@ -59,22 +60,21 @@ function radialBarChart() {
     }
 
     function createGroupArcs() {
-      var pie = d3.pie()
-        .sort(null)
-        .value(function(d) { return d[1] - d[0]; });
+      var segmentAngle = (2 * Math.PI) / totalSegments;
 
       var arc = d3.arc()
         .innerRadius(outerRadius - groupHeight)
-        .outerRadius(outerRadius);
+        .outerRadius(outerRadius)
+        .startAngle(function(d) { return (d[0]) * segmentAngle;})
+        .endAngle(function(d) { return (d[1] + 1) * segmentAngle;})
 
       var path = g.selectAll(null)
-        .data(pie(groupRanges))
+        .data(groupRanges)
         .enter().append("path")
         .attr("fill", function(d, i) {
           return groupColours(i);
         })
         .attr("d", arc)
-        .text(function(d,i) { return groupNames[i];});
     }
   }
 
