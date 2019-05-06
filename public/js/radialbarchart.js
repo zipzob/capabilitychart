@@ -5,19 +5,23 @@ function radialBarChart() {
       groupRanges = [],
       totalLayers = 0,
       totalSegments = 0,
-      margin = {top: 20, right: 20, bottom: 20, left: 20},
-      outerRadius = Math.min(width, height) / 2,
-      innerRadius = outerRadius / 10,
-      groupHeight = outerRadius / 10,
-      dataHeight = outerRadius - innerRadius - groupHeight;
+      margin = {top: 20, right: 20, bottom: 20, left: 20};
 
   function chart(selection) {
+    var outerRadius = Math.min(width, height) / 2,
+        innerRadius = outerRadius / 10,
+        groupHeight = outerRadius / 10,
+        textHeight = outerRadius / 10,
+        dataHeight = outerRadius - innerRadius - groupHeight - textHeight;
+
     var schemeDataColour = ["#daebd8", "#c1cbc2", "#b8d6ce", "#9cbfa1"],
         schemeGroupColour = ["#b5ccd2","#b082b3","#b675a2","#7a8aa4"],
         dataColours = d3.scaleLinear([1,3], schemeDataColour),
         // groupColours = d3.scaleOrdinal([0,3], schemeGroupColour),
         groupColours = d3.scaleOrdinal(d3.schemeCategory10),
         testColours = d3.scaleLinear().domain(d3.extent([0,3], function(d) { return d; })).range(["white", "red"]);
+
+    var segmentAngle = (2 * Math.PI) / totalSegments;
 
     var svg = d3.select("#capabilitychart")
       .append("svg")
@@ -28,20 +32,18 @@ function radialBarChart() {
       .append("g")
       .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-    var radius = Math.min(width, height) / 2;
-
     selection.each(function(entry, index, array) {
       totalLayers = entry.data.data.length + 1;
       if (entry.data.data) {
-        createDataArcs(entry.data, index);
+        _createDataArc(entry.data, index);
       }
-      createGroupArcs();
     })
+
+    _createGroupArcs();
 
 
     function createDataArcs(entry, index) {
       var segmentHeight = dataHeight / entry.data.length;
-      var segmentAngle = (2 * Math.PI) / totalSegments;
 
       var arc = d3.arc()
         .startAngle(index * segmentAngle)
@@ -49,26 +51,23 @@ function radialBarChart() {
         .outerRadius(function(d, i) {return (i + 1) * segmentHeight + innerRadius;})
         .innerRadius(function(d, i) {return i * segmentHeight + innerRadius;});
 
-      var path = g.selectAll(null)
+      g.selectAll(null)
         .data(entry.data)
         .enter().append("path")
-        .attr("fill", function(d, i) {
-          return dataColours(d);
-        })
+        .attr("fill", function(d, i) { return dataColours(d); })
         .attr("style", "stroke: #759081;")
         .attr("d", arc)
     }
 
-    function createGroupArcs() {
-      var segmentAngle = (2 * Math.PI) / totalSegments;
+    function _createGroupArcs() {
 
       var arc = d3.arc()
-        .innerRadius(outerRadius - groupHeight)
-        .outerRadius(outerRadius)
+        .innerRadius(outerRadius - groupHeight - textHeight)
+        .outerRadius(outerRadius - textHeight)
         .startAngle(function(d) { return (d[0]) * segmentAngle;})
         .endAngle(function(d) { return (d[1] + 1) * segmentAngle;})
 
-      var path = g.selectAll(null)
+      g.selectAll(null)
         .data(groupRanges)
         .enter().append("path")
         .attr("fill", function(d, i) {
