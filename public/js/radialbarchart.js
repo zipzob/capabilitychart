@@ -41,8 +41,20 @@ function radialBarChart() {
 
     _createGroupArcs();
 
+    _createLabels(selection);
 
-    function createDataArcs(entry, index) {
+    function _createLabels(selection) {
+      var PI_2 = (Math.PI - segmentAngle) / 2;
+      g.selectAll(null)
+        .data(selection.nodes().map(function(d) { return d.__data__.data.label; }))
+        .enter().append("text")
+        .attr("y", function(d, i) { return Math.sin(i * segmentAngle - PI_2) * (outerRadius - (textHeight / 2)); })
+        .attr("x", function(d, i) { return Math.cos(i * segmentAngle - PI_2) * (outerRadius - (textHeight / 2)); })
+        .style("text-anchor", "middle")
+        .text(function(d) { return d;} );
+    }
+
+    function _createDataArc(entry, index) {
       var segmentHeight = dataHeight / entry.data.length;
 
       var arc = d3.arc()
