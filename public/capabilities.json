@@ -19,18 +19,6 @@
       ]
     },
     {
-      "label": "Strategy 1V",
-      "children": [
-        {"label": "T01", "capabilities": [1,1,1,2,3]},
-        {"label": "T02", "capabilities": [1,1,1,2,3]},
-        {"label": "T03", "capabilities": [2,2,2,2,3]},
-        {"label": "T04", "capabilities": [2,2,2,2,3]},
-        {"label": "T05", "capabilities": [2,2,2,2,3]},
-        {"label": "T12", "capabilities": [3,3,3,3,3]},
-        {"label": "T13", "capabilities": [3,3,3,3,3]}
-      ]
-    },
-    {
       "label": "Strategy 2",
       "children": [
         {"label": "C01", "capabilities": [1,1,1,2,3]},

@@ -4,65 +4,53 @@
     {
       "label": "Strategy 1",
       "children": [
-        {"label": "S01", "data": 1},
-        {"label": "S02", "data": 2},
-        {"label": "S03", "data": 3},
-        {"label": "S04", "data": 5},
-        {"label": "S05", "data": 4},
-        {"label": "S06", "data": 3},
+        {"label": "S01", "data": 3},
+        {"label": "S02", "data": 3},
+        {"label": "S03", "data": 2},
+        {"label": "S04", "data": 3},
+        {"label": "S05", "data": 3},
+        {"label": "S06", "data": 2},
         {"label": "S07", "data": 2},
-        {"label": "S08", "data": 1},
-        {"label": "S09", "data": 3},
-        {"label": "S10", "data": 1},
-        {"label": "S11", "data": 1},
-        {"label": "S12", "data": 2},
-        {"label": "S13", "data": 1}
-      ]
-    },
-    {
-      "label": "Strategy 1V",
-      "children": [
-        {"label": "T01", "data": 3},
-        {"label": "T02", "data": 1},
-        {"label": "T03", "data": 3},
-        {"label": "T04", "data": 3},
-        {"label": "T05", "data": 2},
-        {"label": "T12", "data": 2},
-        {"label": "T13", "data": 3}
+        {"label": "S08", "data": 2},
+        {"label": "S09", "data": 2},
+        {"label": "S10", "data": 3},
+        {"label": "S11", "data": 2},
+        {"label": "S12", "data": 4},
+        {"label": "S13", "data": 3}
       ]
     },
     {
       "label": "Strategy 2",
       "children": [
         {"label": "C01", "data": 3},
-        {"label": "C02", "data": 3},
+        {"label": "C02", "data": 4},
         {"label": "C03", "data": 3},
-        {"label": "C04", "data": 4},
-        {"label": "C05", "data": 3},
-        {"label": "C06", "data": 1},
-        {"label": "C07", "data": 1},
-        {"label": "C08", "data": 3},
-        {"label": "C09", "data": 2},
-        {"label": "C10", "data": 3},
-        {"label": "C11", "data": 3},
-        {"label": "C12", "data": 4},
-        {"label": "C13", "data": 5}
+        {"label": "C04", "data": 3},
+        {"label": "C05", "data": 4},
+        {"label": "C06", "data": 3},
+        {"label": "C07", "data": 4},
+        {"label": "C08", "data": 4},
+        {"label": "C09", "data": 3},
+        {"label": "C10", "data": 2},
+        {"label": "C11", "data": 2},
+        {"label": "C12", "data": 2},
+        {"label": "C13", "data": 2}
       ]
     },
     {
       "label": "Strategy 3",
       "children": [
-        {"label": "I01", "data": 3},
-        {"label": "I02", "data": 3},
+        {"label": "I01", "data": 4},
+        {"label": "I02", "data": 4},
         {"label": "I03", "data": 3},
         {"label": "I04", "data": 3},
         {"label": "I05", "data": 3},
         {"label": "I06", "data": 3},
-        {"label": "I07", "data": 3},
+        {"label": "I07", "data": 2},
         {"label": "I08", "data": 3},
         {"label": "I09", "data": 3},
-        {"label": "I10", "data": 3},
-        {"label": "I11", "data": 3},
+        {"label": "I10", "data": 2},
+        {"label": "I11", "data": 2},
         {"label": "I12", "data": 3},
         {"label": "I13", "data": 3}
       ]
@@ -79,7 +67,7 @@
         {"label": "SD07", "data": 3},
         {"label": "SD08", "data": 3},
         {"label": "SD09", "data": 3},
-        {"label": "SD10", "data": 3},
+        {"label": "SD10", "data": 2},
         {"label": "SD11", "data": 3},
         {"label": "SD12", "data": 3},
         {"label": "SD13", "data": 3}
