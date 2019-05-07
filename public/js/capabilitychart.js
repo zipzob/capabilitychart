@@ -26,6 +26,7 @@ function capabilityChart() {
 
     var svg = d3.select("#capabilitychart")
       .append("svg")
+      .attr("id", "svg")
       .attr("width", width)
       .attr("height", height);
 
