@@ -3,86 +3,86 @@
     {
       "label": "Strategy 1",
       "children": [
-        {"label": "S01", "data": [1,1,1,2,3]},
-        {"label": "S02", "data": [1,1,1,2,3]},
-        {"label": "S03", "data": [2,2,2,2,3]},
-        {"label": "S04", "data": [2,2,2,2,3]},
-        {"label": "S05", "data": [2,2,2,2,3]},
-        {"label": "S06", "data": [2,2,2,2,3]},
-        {"label": "S07", "data": [2,2,2,2,3]},
-        {"label": "S08", "data": [2,2,2,2,3]},
-        {"label": "S09", "data": [2,2,2,2,3]},
-        {"label": "S10", "data": [2,2,2,2,3]},
-        {"label": "S11", "data": [2,2,2,2,3]},
-        {"label": "S12", "data": [3,3,3,3,3]},
-        {"label": "S13", "data": [3,3,3,3,3]}
+        {"label": "S01", "capabilities": [1,1,1,2,3]},
+        {"label": "S02", "capabilities": [1,1,1,2,3]},
+        {"label": "S03", "capabilities": [2,2,2,2,3]},
+        {"label": "S04", "capabilities": [2,2,2,2,3]},
+        {"label": "S05", "capabilities": [2,2,2,2,3]},
+        {"label": "S06", "capabilities": [2,2,2,2,3]},
+        {"label": "S07", "capabilities": [2,2,2,2,3]},
+        {"label": "S08", "capabilities": [2,2,2,2,3]},
+        {"label": "S09", "capabilities": [2,2,2,2,3]},
+        {"label": "S10", "capabilities": [2,2,2,2,3]},
+        {"label": "S11", "capabilities": [2,2,2,2,3]},
+        {"label": "S12", "capabilities": [3,3,3,3,3]},
+        {"label": "S13", "capabilities": [3,3,3,3,3]}
       ]
     },
     {
       "label": "Strategy 1V",
       "children": [
-        {"label": "T01", "data": [1,1,1,2,3]},
-        {"label": "T02", "data": [1,1,1,2,3]},
-        {"label": "T03", "data": [2,2,2,2,3]},
-        {"label": "T04", "data": [2,2,2,2,3]},
-        {"label": "T05", "data": [2,2,2,2,3]},
-        {"label": "T12", "data": [3,3,3,3,3]},
-        {"label": "T13", "data": [3,3,3,3,3]}
+        {"label": "T01", "capabilities": [1,1,1,2,3]},
+        {"label": "T02", "capabilities": [1,1,1,2,3]},
+        {"label": "T03", "capabilities": [2,2,2,2,3]},
+        {"label": "T04", "capabilities": [2,2,2,2,3]},
+        {"label": "T05", "capabilities": [2,2,2,2,3]},
+        {"label": "T12", "capabilities": [3,3,3,3,3]},
+        {"label": "T13", "capabilities": [3,3,3,3,3]}
       ]
     },
     {
       "label": "Strategy 2",
       "children": [
-        {"label": "C01", "data": [1,1,1,2,3]},
-        {"label": "C02", "data": [1,1,1,2,3]},
-        {"label": "C03", "data": [2,2,2,2,3]},
-        {"label": "C04", "data": [2,2,2,2,3]},
-        {"label": "C05", "data": [2,2,2,2,3]},
-        {"label": "C06", "data": [2,2,2,2,3]},
-        {"label": "C07", "data": [2,2,2,2,3]},
-        {"label": "C08", "data": [2,2,2,2,3]},
-        {"label": "C09", "data": [2,2,2,2,3]},
-        {"label": "C10", "data": [2,2,2,2,3]},
-        {"label": "C11", "data": [2,2,2,2,3]},
-        {"label": "C12", "data": [3,3,3,3,3]},
-        {"label": "C13", "data": [3,3,3,3,3]}
+        {"label": "C01", "capabilities": [1,1,1,2,3]},
+        {"label": "C02", "capabilities": [1,1,1,2,3]},
+        {"label": "C03", "capabilities": [2,2,2,2,3]},
+        {"label": "C04", "capabilities": [2,2,2,2,3]},
+        {"label": "C05", "capabilities": [2,2,2,2,3]},
+        {"label": "C06", "capabilities": [2,2,2,2,3]},
+        {"label": "C07", "capabilities": [2,2,2,2,3]},
+        {"label": "C08", "capabilities": [2,2,2,2,3]},
+        {"label": "C09", "capabilities": [2,2,2,2,3]},
+        {"label": "C10", "capabilities": [2,2,2,2,3]},
+        {"label": "C11", "capabilities": [2,2,2,2,3]},
+        {"label": "C12", "capabilities": [3,3,3,3,3]},
+        {"label": "C13", "capabilities": [3,3,3,3,3]}
       ]
     },
     {
       "label": "Strategy 3",
       "children": [
-        {"label": "I01", "data": [1,1,1,2,3]},
-        {"label": "I02", "data": [1,1,1,2,3]},
-        {"label": "I03", "data": [2,2,2,2,3]},
-        {"label": "I04", "data": [2,2,2,2,3]},
-        {"label": "I05", "data": [2,2,2,2,3]},
-        {"label": "I06", "data": [2,2,2,2,3]},
-        {"label": "I07", "data": [2,2,2,2,3]},
-        {"label": "I08", "data": [2,2,2,2,3]},
-        {"label": "I09", "data": [2,2,2,2,3]},
-        {"label": "I10", "data": [2,2,2,2,3]},
-        {"label": "I11", "data": [2,2,2,2,3]},
-        {"label": "I12", "data": [3,3,3,3,3]},
-        {"label": "I13", "data": [3,3,3,3,3]}
+        {"label": "I01", "capabilities": [1,1,1,2,3]},
+        {"label": "I02", "capabilities": [1,1,1,2,3]},
+        {"label": "I03", "capabilities": [2,2,2,2,3]},
+        {"label": "I04", "capabilities": [2,2,2,2,3]},
+        {"label": "I05", "capabilities": [2,2,2,2,3]},
+        {"label": "I06", "capabilities": [2,2,2,2,3]},
+        {"label": "I07", "capabilities": [2,2,2,2,3]},
+        {"label": "I08", "capabilities": [2,2,2,2,3]},
+        {"label": "I09", "capabilities": [2,2,2,2,3]},
+        {"label": "I10", "capabilities": [2,2,2,2,3]},
+        {"label": "I11", "capabilities": [2,2,2,2,3]},
+        {"label": "I12", "capabilities": [3,3,3,3,3]},
+        {"label": "I13", "capabilities": [3,3,3,3,3]}
       ]
     },
     {
       "label": "Strategy 4",
       "children": [
-        {"label": "SD01", "data": [1,1,1,2,3]},
-        {"label": "SD02", "data": [1,1,1,2,3]},
-        {"label": "SD03", "data": [2,2,2,2,3]},
-        {"label": "SD04", "data": [2,2,2,2,3]},
-        {"label": "SD05", "data": [2,2,2,2,3]},
-        {"label": "SD06", "data": [2,2,2,2,3]},
-        {"label": "SD07", "data": [2,2,2,2,3]},
-        {"label": "SD08", "data": [2,2,2,2,3]},
-        {"label": "SD09", "data": [2,2,2,2,3]},
-        {"label": "SD10", "data": [2,2,2,2,3]},
-        {"label": "SD11", "data": [2,2,2,2,3]},
-        {"label": "SD12", "data": [3,3,3,3,3]},
-        {"label": "SD13", "data": [3,3,3,3,3]}
+        {"label": "SD01", "capabilities": [1,1,1,2,3]},
+        {"label": "SD02", "capabilities": [1,1,1,2,3]},
+        {"label": "SD03", "capabilities": [2,2,2,2,3]},
+        {"label": "SD04", "capabilities": [2,2,2,2,3]},
+        {"label": "SD05", "capabilities": [2,2,2,2,3]},
+        {"label": "SD06", "capabilities": [2,2,2,2,3]},
+        {"label": "SD07", "capabilities": [2,2,2,2,3]},
+        {"label": "SD08", "capabilities": [2,2,2,2,3]},
+        {"label": "SD09", "capabilities": [2,2,2,2,3]},
+        {"label": "SD10", "capabilities": [2,2,2,2,3]},
+        {"label": "SD11", "capabilities": [2,2,2,2,3]},
+        {"label": "SD12", "capabilities": [3,3,3,3,3]},
+        {"label": "SD13", "capabilities": [3,3,3,3,3]}
       ]
     }
-    ]
+  ]
 }

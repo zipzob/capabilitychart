@@ -12,71 +12,88 @@
 	</section>
 
   <script src="js/d3/d3.js"></script>
-  <script src="js/radialbarchart.js"></script>
+  <script src="js/capabilitychart.js"></script>
 
   <script>
-    d3.json("capabilities.json")
-      .then(function(json) {
-        // add missing parent node, if necessary
-        if (Array.isArray(json)) {
-          json = {
-            "children": json
-          };
+  var surveys = {};
+
+  d3.json("survey1.json")
+  .then(function(json) {
+    var treeroot = d3.hierarchy(json);
+
+    surveys[treeroot.data.label] =
+    treeroot.leaves().reduce(function(acc, elem, index) {
+      acc[elem.data.label] = elem.data.data;
+      return acc;
+    }, {});
+    // treeroot.leaves().map(function(d) { return { ""+d.data.label: d.datalabel}; });
+  });
+
+  // console.log(surveys);
+
+  d3.json("capabilities.json")
+    .then(function(json) {
+      // add missing parent node, if necessary
+      if (Array.isArray(json)) {
+        json = {
+          "children": json
+        };
+      }
+      // create traversable d3 hierarchy
+      // var treeroot = d3.hierarchy(json, function(e) { return Number.isFinite(e.data[0]) ? [] : e.data; });
+      var treeroot = d3.hierarchy(json);
+
+      // TODO: move into some chart helper or import function.
+      // enrich with meta data information
+      var total = treeroot.leaves().length;
+      // treeroot.children.map(function(d) { return d.children.length;})
+      var ranges = treeroot.children.reduce(function(acc, elem, index) {
+        // console.log(acc,elem,index);
+        if (!elem.children) return acc;
+        if(acc[index - 1]) {
+          var va = acc[index - 1][1] + 1;
+          acc.push([va, va + elem.children.length - 1])
         }
-        // create traversable d3 hierarchy
-        // var treeroot = d3.hierarchy(json, function(e) { return Number.isFinite(e.data[0]) ? [] : e.data; });
-        var treeroot = d3.hierarchy(json);
+        else {
+          acc.push([0, elem.children.length - 1])
+        }
+        return acc;
+      }, []);
+      var names = treeroot.children.reduce(function(acc, elem, index) {
+        // console.log(acc,elem,index);
+        acc.push(elem.data.label);
+        return acc;
+      }, []);
 
-        // TODO: move into some chart helper or import function.
-        // enrich with meta data information
-        var total = treeroot.leaves().length;
-        // treeroot.children.map(function(d) { return d.children.length;})
-        var ranges = treeroot.children.reduce(function(acc, elem, index) {
-          // console.log(acc,elem,index);
-          if(acc[index - 1]) {
-            var va = acc[index - 1][1] + 1;
-            acc.push([va, va + elem.children.length - 1])
-          }
-          else {
-            acc.push([0, elem.children.length - 1])
-          }
-          return acc;
-        }, []);
-        var names = treeroot.children.reduce(function(acc, elem, index) {
-          // console.log(acc,elem,index);
-          acc.push(elem.data.label);
-          return acc;
-        }, []);
+      var chart = capabilityChart()
+        .groupRanges(ranges)
+        .groupNames(names)
+        .surveys(surveys)
+        .totalSegments(total);
+      d3.select("#capabilitychart")
+        .selectAll("svg")
+        .data(treeroot.leaves())
+        .enter()
+        .call(chart);
+    });
 
-        // console.log("json data", json);
-        var chart = radialBarChart()
-          .groupRanges(ranges)
-          .groupNames(names)
-          .totalSegments(total);
-        d3.select("#capabilitychart")
-          .selectAll("svg")
-          .data(treeroot.leaves())
-          .enter()
-          .call(chart);
-      });
-
-      // var matrix = [
-      //   [11975,  5871, 8916, 2868],
-      //   [ 1951, 10048, 2060, 6171],
-      //   [ 8010, 16145, 8090, 8045],
-      //   [ 1013,   990,  940, 6907]
-      // ];
-      //
-      // var tr = d3.select("body")
-      //   .append("table")
-      //   .selectAll("tr")
-      //   .data(matrix)
-      //   .join("tr");
-      //
-      // var td = tr.selectAll("td")
-      //   .data(function(d) { return d; })
-      //   .join("td")
-      //     .text(function(d) { return d; });
+    // var matrix = [
+    //   [11975,  5871, 8916, 2868],
+    //   [ 1951, 10048, 2060, 6171],
+    //   [ 8010, 16145, 8090, 8045],
+    //   [ 1013,   990,  940, 6907]
+    // ];
+    //
+    // var tr = d3.select("body")
+    //   .append("table")
+    //   .selectAll("tr")
+    //   .data(matrix)
+    //   .join("tr");
+    //
+    // var td = tr.selectAll("td")
+    //   .data(function(d) { return d; })
+    //   .join("td")
+    //     .text(function(d) { return d; });
   </script>
 </body>
 </html>
