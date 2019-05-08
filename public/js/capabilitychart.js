@@ -4,7 +4,31 @@ function capabilityChart() {
       groupNames = [],
       groupRanges = [],
       surveys = {},
-      totalSegments = 0,
+      schemeGroupColours_0_3 = [
+        // Strategy: 81, 189, 195
+        "rgb(81, 189, 195)",
+        // culture: 204, 51, 153
+        "rgb(204, 51, 153)",
+        // Implementation: 51, 102, 204
+        "rgb(51, 102, 204)",
+        // Skill Development: 153, 51, 153
+        "rgb(153, 51, 153)",
+      ],
+      // schemeGroupColours_0_3 = ["#b5ccd2","#b082b3","#b675a2","#7a8aa4"],
+      schemeDataColours_0_3 = [
+        "white",
+        // "red"
+        // rgb(229, 243, 228);
+        "#e5f3e4",
+        // rgb(218, 235, 216)
+        // "#daebd8",
+        // rgb(193, 203, 194);
+        // "#c1cbc2",
+        // rgb(184, 214, 206);
+        // "#b8d6ce",
+        // rgb(156, 191, 161);
+        "#9cbfa1",
+      ],
       margin = {top: 20, right: 20, bottom: 20, left: 20};
 
   function chart(selection) {
@@ -12,30 +36,22 @@ function capabilityChart() {
         innerRadius = outerRadius / 10,
         groupHeight = outerRadius / 10,
         textHeight = outerRadius / 10,
-        dataHeight = outerRadius - innerRadius - groupHeight - textHeight;
+        dataHeight = outerRadius - innerRadius - groupHeight - textHeight,
+        totalSegments = selection.size();
 
-    var schemeDataColour = ["#daebd8", "#c1cbc2", "#b8d6ce", "#9cbfa1"],
-        schemeGroupColour = ["#b5ccd2","#b082b3","#b675a2","#7a8aa4"],
-        dataColours = d3.scaleLinear([1,3], schemeDataColour),
-        // groupColours = d3.scaleOrdinal([0,3], schemeGroupColour),
-        totalLayers = 0,
-        groupColours = d3.scaleOrdinal(d3.schemeCategory10),
-        testColours = d3.scaleLinear().domain(d3.extent([0,3], function(d) { return d; })).range(["white", "red"]);
-
-    var segmentAngle = (2 * Math.PI) / totalSegments;
-
-    var svg = d3.select("#capabilitychart")
-      .append("svg")
-      .attr("id", "svg")
-      .attr("width", width)
-      .attr("height", height);
-
-    var g = svg
-      .append("g")
-      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+    var dataColours = d3.scaleLinear([0,1,3],schemeDataColours_0_3),
+        groupColours = d3.scaleOrdinal([0,1,2,3], schemeGroupColours_0_3),
+        totalLayers = 0;
 
     var segmentNames = [];
     var segmentHeights = [];
+    var PI_2 = (Math.PI) / 2;
+    var segmentAngle = (2 * Math.PI) / totalSegments;
+
+    var svg = d3.select(selection.node());
+    var g = svg
+      .append("g")
+      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
     selection.each(function(entry, index, array) {
       totalLayers = entry.data.capabilities.length + 1;
@@ -48,67 +64,51 @@ function capabilityChart() {
 
     var surveydata = Object.keys(surveys).map(function(survey) {
       return segmentNames.map(function(name) { return surveys[survey][name] });
-    }).forEach(function(data,index,array) {
-      // var radius = surveys[key][entry.label] * segmentHeight + innerRadius;
-      console.log(data);
-      var surveyArc = d3.arc()
-        .startAngle(function(d,i) { return i * segmentAngle;})
-        .endAngle(function(d,i) { return (i + 1) * segmentAngle;})
-        .outerRadius(function(d,i) { return d * segmentHeights[index] + innerRadius; })
-        .innerRadius(function(d,i) { return d * segmentHeights[index] + innerRadius; });
+    }).forEach(_createSurveyPath);
 
-      function surveyLine(data) {
+    function _createSurveyPath(data,index,array) {
+        function surveyLine(data) {
 
-        var PI_2 = (Math.PI) / 2;
-        function _radius(d,i) { return d * segmentHeights[index] + innerRadius; };
-        function _y(d, i) { return Math.sin(i * segmentAngle - PI_2) * _radius(d,i); };
-        function _x(d, i) { return Math.cos(i * segmentAngle - PI_2) * _radius(d,i); };
-        function _startAngle(d,i) { return i * segmentAngle - PI_2;};
-        function _endAngle(d,i) { return (i + 1) * segmentAngle - PI_2;};
+          function _radius(d,i) { return d * segmentHeights[index] + innerRadius; };
+          function _y(d, i) { return Math.sin(i * segmentAngle - PI_2) * _radius(d,i); };
+          function _x(d, i) { return Math.cos(i * segmentAngle - PI_2) * _radius(d,i); };
+          function _startAngle(d,i) { return i * segmentAngle - PI_2;};
+          function _endAngle(d,i) { return (i + 1) * segmentAngle - PI_2;};
 
-        var path = d3.path();
+          var path = d3.path();
 
-        data.forEach(internal);
+          data.forEach(internal);
 
-        function internal(d,i,a) {
-          console.log(d,i);
+          function internal(d,i,a) {
+            console.log(d,i);
 
-          if (i == 0) {
-            // console.log(_x(d,i),_y(d,i));
-            console.log("start");
-            path.moveTo(_x(d,i),_y(d,i));
-            path.arc(0,0, _radius(d, i), _startAngle(d, i), _endAngle(d, i));
+            if (i == 0) {
+              // console.log(_x(d,i),_y(d,i));
+              console.log("start");
+              path.moveTo(_x(d,i),_y(d,i));
+              path.arc(0,0, _radius(d, i), _startAngle(d, i), _endAngle(d, i));
+            }
+            else if (i == a.length - 1) {
+              path.lineTo(_x(d,i),_y(d,i));
+              path.arc(0,0, _radius(d, i), _startAngle(d, i), _endAngle(d, i));
+              path.closePath();
+            }
+            else {
+              path.lineTo(_x(d,i),_y(d,i));
+              path.arc(0,0, _radius(d, i), _startAngle(d, i), _endAngle(d, i));
+              console.log("data");
+            }
           }
-          else if (i == a.length - 1) {
-            path.lineTo(_x(d,i),_y(d,i));
-            path.arc(0,0, _radius(d, i), _startAngle(d, i), _endAngle(d, i));
-            path.closePath();
-          }
-          else {
-            path.lineTo(_x(d,i),_y(d,i));
-            path.arc(0,0, _radius(d, i), _startAngle(d, i), _endAngle(d, i));
-            console.log("data");
-          }
+
+          return path._;
         }
 
-        return path._;
-      }
-
-      var path = surveyLine(data);
-      console.log("path", path);
-      g.append("path")
-        .attr("style", "stroke-width:3px; stroke: black; fill: none;")
-        .attr("d", path);
-
-      // g.selectAll(null)
-      //   .data(data)
-      //   .enter()
-      //   .append("path")
-      //   .attr("style", "stroke-width:3px; stroke: black; fill: black;")
-      //   .attr("d", surveyArc);
-
-    });
-
+        var path = surveyLine(data);
+        console.log("path", path);
+        g.append("path")
+          .attr("style", "stroke-width:3px; stroke: black; fill: none;")
+          .attr("d", path);
+      };
 
     _createGroupArcs();
 
@@ -122,7 +122,7 @@ function capabilityChart() {
         .attr("y", function(d, i) { return Math.sin(i * segmentAngle - PI_2) * (outerRadius - (textHeight / 2)); })
         .attr("x", function(d, i) { return Math.cos(i * segmentAngle - PI_2) * (outerRadius - (textHeight / 2)); })
         .style("text-anchor", "middle")
-        .text(function(d) { return d;} );
+        .text(function(d) { return d; } );
     }
 
     function _createDataArc(entry, index) {
@@ -159,10 +159,6 @@ function capabilityChart() {
         .attr("d", arc)
     }
   }
-
-  // function groupIndex(index) {
-  //   return groupRanges.findIndex(function(range) { return range[0] <= index && index <= range[1]; });
-  // }
 
   chart.width = function(_) {
     if (!arguments.length) return width;
