@@ -40,7 +40,7 @@ function capabilityChart() {
     var outerRadius = Math.min(width, height) / 2,
         innerRadius = outerRadius / 10,
         groupHeight = outerRadius / 15,
-        textHeight = outerRadius / 10,
+        textHeight = outerRadius / 8,
         dataHeight = outerRadius - innerRadius - groupHeight - textHeight,
         totalSegments = selection.size();
 
@@ -78,7 +78,7 @@ function capabilityChart() {
     function _createSurveyPath(data,index,array) {
       function surveyLine(data) {
 
-        function _radius(d,i) { return d * segmentHeights[index] + innerRadius; };
+        function _radius(d,i) { return (d-1) * segmentHeights[index] + innerRadius; };
         function _y(d, i) { return Math.sin(i * segmentAngle - PI_2) * _radius(d,i); };
         function _x(d, i) { return Math.cos(i * segmentAngle - PI_2) * _radius(d,i); };
         function _startAngle(d,i) { return i * segmentAngle - PI_2;};

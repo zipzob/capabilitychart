@@ -1,7 +1,7 @@
 {
   "children": [
     {
-      "label": "Strategy 1",
+      "label": "Strategy",
       "children": [
         {"label": "S01", "capabilities": [1,1,2,3]},
         {"label": "S02", "capabilities": [1,1,2,3]},
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "label": "Strategy 2",
+      "label": "Culture",
       "children": [
         {"label": "C01", "capabilities": [1,1,2,3]},
         {"label": "C02", "capabilities": [1,1,2,3]},
@@ -37,7 +37,7 @@
       ]
     },
     {
-      "label": "Strategy 3",
+      "label": "Implementation",
       "children": [
         {"label": "I01", "capabilities": [1,1,2,3]},
         {"label": "I02", "capabilities": [1,1,2,3]},
@@ -55,7 +55,7 @@
       ]
     },
     {
-      "label": "Strategy 4",
+      "label": "Skill Development",
       "children": [
         {"label": "SD01", "capabilities": [1,1,2,3]},
         {"label": "SD02", "capabilities": [1,1,2,3]},

@@ -1,0 +1,77 @@
+{
+  "label": "Survey 1",
+  "children": [
+    {
+      "label": "Strategy",
+      "children": [
+        {"label": "S01", "data": 3},
+        {"label": "S02", "data": 3},
+        {"label": "S03", "data": 2},
+        {"label": "S04", "data": 3},
+        {"label": "S05", "data": 3},
+        {"label": "S06", "data": 2},
+        {"label": "S07", "data": 2},
+        {"label": "S08", "data": 2},
+        {"label": "S09", "data": 2},
+        {"label": "S10", "data": 3},
+        {"label": "S11", "data": 2},
+        {"label": "S12", "data": 4},
+        {"label": "S13", "data": 3}
+      ]
+    },
+    {
+      "label": "Culture",
+      "children": [
+        {"label": "C01", "data": 3},
+        {"label": "C02", "data": 4},
+        {"label": "C03", "data": 3},
+        {"label": "C04", "data": 3},
+        {"label": "C05", "data": 4},
+        {"label": "C06", "data": 3},
+        {"label": "C07", "data": 4},
+        {"label": "C08", "data": 4},
+        {"label": "C09", "data": 3},
+        {"label": "C10", "data": 2},
+        {"label": "C11", "data": 2},
+        {"label": "C12", "data": 2},
+        {"label": "C13", "data": 2}
+      ]
+    },
+    {
+      "label": "Implementation",
+      "children": [
+        {"label": "I01", "data": 4},
+        {"label": "I02", "data": 4},
+        {"label": "I03", "data": 3},
+        {"label": "I04", "data": 3},
+        {"label": "I05", "data": 3},
+        {"label": "I06", "data": 3},
+        {"label": "I07", "data": 2},
+        {"label": "I08", "data": 3},
+        {"label": "I09", "data": 3},
+        {"label": "I10", "data": 2},
+        {"label": "I11", "data": 2},
+        {"label": "I12", "data": 3},
+        {"label": "I13", "data": 3}
+      ]
+    },
+    {
+      "label": "Skill Development",
+      "children": [
+        {"label": "SD01", "data": 3},
+        {"label": "SD02", "data": 3},
+        {"label": "SD03", "data": 3},
+        {"label": "SD04", "data": 3},
+        {"label": "SD05", "data": 3},
+        {"label": "SD06", "data": 3},
+        {"label": "SD07", "data": 3},
+        {"label": "SD08", "data": 3},
+        {"label": "SD09", "data": 3},
+        {"label": "SD10", "data": 2},
+        {"label": "SD11", "data": 3},
+        {"label": "SD12", "data": 3},
+        {"label": "SD13", "data": 3}
+      ]
+    }
+  ]
+}

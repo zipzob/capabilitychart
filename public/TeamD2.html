@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+  <title>Capability Chart</title>
+  <link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" type="text/css"
+    href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css">
+	<style>
+	body .chart {
+		font-family: "Computer Modern Sans", sans-serif;
+	}
+
+	</style>
+</head>
+<body>
+	<section>
+		<h1>Capability Chart</h1>
+		<svg class="chart" id="capabilitychart"></svg>
+		<input id="button" type="button" value="1. Generate"/>
+    <a href="" id="link">2. Right click Save As</a>
+	</section>
+
+  <script src="js/d3/d3.js"></script>
+  <script src="js/capabilitychart.js"></script>
+
+  <script>
+  var surveys = {};
+
+  d3.json("TeamD2.json")
+  .then(function(json) {
+    var treeroot = d3.hierarchy(json);
+
+    surveys[treeroot.data.label] =
+    treeroot.leaves().reduce(function(acc, elem, index) {
+      acc[elem.data.label] = elem.data.data;
+      return acc;
+    }, {});
+    // treeroot.leaves().map(function(d) { return { ""+d.data.label: d.datalabel}; });
+  });
+
+  // console.log(surveys);
+
+  d3.json("capabilities.json")
+    .then(function(json) {
+      // add missing parent node, if necessary
+      if (Array.isArray(json)) {
+        json = {
+          "children": json
+        };
+      }
+      // create traversable d3 hierarchy
+      // var treeroot = d3.hierarchy(json, function(e) { return Number.isFinite(e.data[0]) ? [] : e.data; });
+      var treeroot = d3.hierarchy(json);
+
+      // TODO: move into some chart helper or import function.
+      // enrich with meta data information
+      // var total = treeroot.leaves().length;
+      // treeroot.children.map(function(d) { return d.children.length;})
+      var ranges = treeroot.children.reduce(function(acc, elem, index) {
+        // console.log(acc,elem,index);
+        if (!elem.children) return acc;
+        if(acc[index - 1]) {
+          var va = acc[index - 1][1] + 1;
+          acc.push([va, va + elem.children.length - 1])
+        }
+        else {
+          acc.push([0, elem.children.length - 1])
+        }
+        return acc;
+      }, []);
+      var names = treeroot.children.reduce(function(acc, elem, index) {
+        // console.log(acc,elem,index);
+        acc.push(elem.data.label);
+        return acc;
+      }, []);
+
+      var chart = capabilityChart()
+        .groupRanges(ranges)
+        .groupNames(names)
+        .surveys(surveys);
+        // .totalSegments(total);
+
+    d3.select("#capabilitychart")
+        .selectAll("svg")
+        .data(treeroot.leaves())
+        .enter()
+        .call(chart);
+    });
+
+    d3.select("#button")
+    .on("click", function() {
+      console.log("click");
+
+      //get svg element.
+      var svg = document.getElementById("capabilitychart");
+
+      //get svg source.
+      var serializer = new XMLSerializer();
+      var source = serializer.serializeToString(svg);
+
+      //add name spaces.
+      if(!source.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)){
+          source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
+      }
+      if(!source.match(/^<svg[^>]+"http\:\/\/www\.w3\.org\/1999\/xlink"/)){
+          source = source.replace(/^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"');
+      }
+
+      //add xml declaration
+      source = '<?xml version="1.0" standalone="no"?>\r\n' + source;
+
+      //convert svg source to URI data scheme.
+      var url = "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(source);
+
+      //set url value to a element's href attribute.
+      document.getElementById("link").href = url;
+      //you can download svg file by right click menu.
+      // d3.event.stopPropagation();
+    });
+  </script>
+</body>
+</html>
