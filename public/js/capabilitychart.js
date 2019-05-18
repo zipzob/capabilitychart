@@ -127,6 +127,7 @@ function capabilityChart() {
         .attr("y", function(d, i) { return Math.sin(i * segmentAngle - PI_2) * (outerRadius - (textHeight / 2)); })
         .attr("x", function(d, i) { return Math.cos(i * segmentAngle - PI_2) * (outerRadius - (textHeight / 2)); })
         .style("text-anchor", "middle")
+        .style("font-size", "16pt")
         .text(function(d) { return d; } );
     }
 
